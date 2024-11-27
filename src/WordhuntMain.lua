@@ -61,7 +61,7 @@ function ResetTimer()
 	expireTime = tick() + Budget
 end
 
--- call at the top of loops
+--// Call at the top of loops
 function yield_if_necessary()
 	if tick() >= expireTime then
 		task.wait()
@@ -85,15 +85,15 @@ local function dfs(matrix, x, y, visited, curr_word, curr_pos, found)
 		yield_if_necessary()
 		local nx, ny = x + direction[1], y + direction[2]
 
-		-- Check if the new position is within bounds and not visited
+		--// Check if the new position is within bounds and not visited
 		if nx >= 1 and nx <= 4 and ny >= 1 and ny <= 4 and not visited[nx][ny] then
 			local new_word = curr_word .. matrix[nx][ny]
 
-			-- Check if the new word is a valid prefix
+			--// Check if the new word is a valid prefix
 			if is_valid(new_word) then
-				local new_positions = {table.unpack(curr_pos)}  -- Copy current positions
-				table.insert(new_positions, {nx, ny})  -- Add the new position
-				-- Recurse into the next step of DFS
+				local new_positions = {table.unpack(curr_pos)} -- copy current positions
+				table.insert(new_positions, {nx, ny}) -- add the new position
+				-- recurse into the next step of DFS
 				dfs(matrix, nx, ny, visited, new_word, new_positions, found)
 			end
 		end
@@ -106,13 +106,13 @@ end
 local function find_words(matrix)
 	local found = {}
 
-	-- Create a visited table to track visited cells
+	--// Create a visited table to track visited cells
 	local visited = {}
 	for i = 1, 4 do
 		visited[i] = {}
 	end
 
-	-- Start DFS from each cell
+	--// Start DFS from each cell
 	for i = 1, 4 do
 		for j = 1, 4 do
 			yield_if_necessary()
@@ -120,17 +120,17 @@ local function find_words(matrix)
 		end
 	end
 
-	-- Convert the found words from a table to a sorted list
+	--// Convert the found words from a table to a sorted list
 	local words = {}
 
-	-- For each word in found, store the word and its positions
+	--// For each word in found, store the word and its positions
 	for word, positions in pairs(found) do
 		table.insert(words, {word:upper(), positions})
 	end
 
-	-- Sort the words by length (longest first)
+	--// Sort the words by length (longest first)
 	table.sort(words, function(a, b)
-		return #a[1] > #b[1]  -- Sort by word length, longest words first
+		return #a[1] > #b[1] -- sort by word length, longest words first
 	end)
 
 	return words
@@ -153,12 +153,12 @@ WordhuntSubmit.OnServerEvent:Connect(function(player, row1, row2, row3, row4)
 		end
 	end
 	
-	-- Send the matrix to the client
+	--// Send the matrix to the client
 	WordhuntSubmit:FireClient(player, matrix)
 
 	words = find_words(matrix)
 
-	-- Send the first word and its positions to the client
+	--// Send the first word and its positions to the client
 	if words[currIndex] then
 		local word, positions = words[currIndex][1], words[currIndex][2]
 		WordhuntNext:FireClient(player, word, positions)
