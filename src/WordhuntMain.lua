@@ -123,7 +123,7 @@ local function find_words(matrix)
 	-- Convert the found words from a table to a sorted list
 	local words = {}
 
-	-- For each word in found_words, store the word and its positions
+	-- For each word in found, store the word and its positions
 	for word, positions in pairs(found) do
 		table.insert(words, {word:upper(), positions})
 	end
@@ -167,7 +167,6 @@ WordhuntSubmit.OnServerEvent:Connect(function(player, row1, row2, row3, row4)
 	end
 end)
 
--- Event to handle the next word
 WordhuntNext.OnServerEvent:Connect(function(player)
 	if currIndex < #words then
 		currIndex = currIndex + 1
