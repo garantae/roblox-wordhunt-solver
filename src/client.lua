@@ -7,8 +7,6 @@ local WordhuntNext = RemoteEvents:WaitForChild("WordhuntNext")
 local Main = script.Parent:WaitForChild("Main")
 local Main_Wordhunt = script.Parent:WaitForChild("Main_Wordhunt")
 local Init_Wordhunt = script.Parent:WaitForChild("Init_Wordhunt")
-
---// Buttons
 local WordhuntButton = Main:WaitForChild("Wordhunt")
 local NextWordButton = Main_Wordhunt:WaitForChild("NextWord")
 local SubmitWordButton = Init_Wordhunt:WaitForChild("Submit")
@@ -16,13 +14,13 @@ local SubmitWordButton = Init_Wordhunt:WaitForChild("Submit")
 --// Debounces
 local NextWordDebounce = false
 
-function __init__()
+function init()
 	if Main.Visible == false then
 		Main.Visible = true
 	end
 end
 
-__init__()
+init()
 
 WordhuntButton.MouseButton1Click:Connect(function()
 	if Init_Wordhunt.Visible == false then
