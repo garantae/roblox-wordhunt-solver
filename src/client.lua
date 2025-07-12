@@ -11,11 +11,11 @@ local WordhuntButton = Main:WaitForChild("Wordhunt")
 local NextWordButton = Main_Wordhunt:WaitForChild("NextWord")
 local SubmitWordButton = Init_Wordhunt:WaitForChild("Submit")
 
---// Debounces
+--// Other Variables
 local NextWordDebounce = false
 
 function init()
-	if Main.Visible == false then
+    if Main.Visible == false then
 		Main.Visible = true
 	end
 end
