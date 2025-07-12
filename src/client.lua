@@ -83,4 +83,3 @@ WordhuntSubmit.OnClientEvent:Connect(function(matrix)
 		end
 	end
 end)
---test
