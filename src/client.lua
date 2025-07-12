@@ -47,7 +47,7 @@ NextWordButton.MouseButton1Click:Connect(function()
 	if NextWordDebounce == false then
 		NextWordDebounce = true
 		
-		--// Hide order of previous word (if visible)
+		-- Hide order of previous word (if visible)
 		for _, txt in ipairs(Main_Wordhunt:GetChildren()) do
 			if txt:IsA("TextLabel") and txt:FindFirstChild("order") and txt.order.Visible == true then
 				txt.order.Visible = false
@@ -64,7 +64,7 @@ end)
 WordhuntNext.OnClientEvent:Connect(function(word, positions)
 	Main_Wordhunt.CurrentWord.Text = word
 	
-	--// Get the order of the word
+	-- Get the order of the word
 	local count = 1
 	for _, pos in ipairs(positions) do
 		local x, y = pos[1], pos[2]
